@@ -1,0 +1,22 @@
+{
+	"name": "mapty",
+	"version": "1.0.0",
+	"description": "This is my learning JavaScript project",
+	"main": "script.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "dead-server --host=localhost --port=1717",
+		"start": "nodemon ./mapty/script.js"
+	},
+	"keywords": [
+		"JavaScript",
+		"learning",
+		"maptyApp"
+	],
+	"author": "Saulius Grazys",
+	"license": "MIT",
+	"devDependencies": {
+		"dead-server": "^1.0.9",
+		"nodemon": "^2.0.22"
+	}
+}
