@@ -14,6 +14,11 @@ Web page published at: [https://sgrazys.github.io/Mapty/](https://sgrazys.github
 -   Geolocation
 -   Local storage
 -   External libraries
+-   Web project planning
+-   Project architecture
+-   Rendering
+-   Refactoring
+-   Marker (map)
 
 ## 🧰 Getting Started
 
