@@ -13,7 +13,12 @@ Web page published at: [https://sgrazys.github.io/Mapty/](https://sgrazys.github
 -   Object Oriented Programming
 -   Geolocation
 -   Local storage
--   External libraries
+-   External libraries (leafletjs)
+-   Web project planning
+-   Project architecture
+-   Rendering
+-   Refactoring
+-   Marker (map)
 
 ## 🧰 Getting Started
 
