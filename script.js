@@ -73,7 +73,13 @@ class App {
 	#workouts = [];
 
 	constructor() {
+		// Get user position
 		this._getPosition();
+
+		//Get data from local storage
+		this._getLocalStorage();
+
+		//Attach eevent handlers
 		form.addEventListener('submit', this._newWorkout.bind(this));
 		inputType.addEventListener('change', this._toggleElevationField);
 		containerWorkouts.addEventListener(
@@ -112,6 +118,9 @@ class App {
 		// Handling clicks on map
 
 		this.#map.on('click', this._showForm.bind(this));
+		this.#workouts.forEach((work) => {
+			this._renderWorkoutMarker(work);
+		});
 	}
 
 	_showForm(mapE) {
@@ -186,7 +195,7 @@ class App {
 		}
 		// Add new obj to workout array
 		this.#workouts.push(workout);
-		console.log(workout);
+		// console.log(workout);
 		// Render workout on map as marker
 		this._renderWorkoutMarker(workout);
 		// Render workout on list
@@ -194,6 +203,9 @@ class App {
 
 		// Hide form + clear inputs
 		this._hideForm();
+
+		// Set local stotrage to all workouts
+		this._setLocalStorage();
 	}
 	_renderWorkoutMarker(workout) {
 		L.marker(workout.coords)
@@ -266,14 +278,14 @@ class App {
 
 	_moveToPopup(e) {
 		const workoutEl = e.target.closest('.workout');
-		console.log(workoutEl);
+		// console.log(workoutEl);
 
 		if (!workoutEl) return;
 
 		const workout = this.#workouts.find(
 			(work) => work.id === workoutEl.dataset.id
 		);
-		console.log(workout);
+		// console.log(workout);
 
 		this.#map.setView(workout.coords, this.#mapZoomLevel, {
 			animate: true,
@@ -283,7 +295,28 @@ class App {
 		});
 
 		// using the public interface
-		workout.click();
+		// workout.click();
+	}
+
+	_setLocalStorage() {
+		localStorage.setItem('workout', JSON.stringify(this.#workouts));
+	}
+
+	_getLocalStorage() {
+		const data = JSON.parse(localStorage.getItem('workout'));
+		// console.log(data);
+
+		if (!data) return;
+
+		this.#workouts = data;
+
+		this.#workouts.forEach((work) => {
+			this._renderWorkout(work);
+		});
+	}
+	reset() {
+		localStorage.removeItem('workout');
+		location.reload();
 	}
 }
 
